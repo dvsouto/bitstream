@@ -23,13 +23,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         boolean authorized = false;
         String token = this.getToken(request);
-        SecurityContextHolder.getContext().setAuthentication(
-                new UsernamePasswordAuthenticationToken(
-                        "davi.souto@gmail.com",
-                        null,
-                        Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"))
-                )
-        );
+
         if (shouldSkipAuthentication(request)) {
             filterChain.doFilter(request, response);
             return;
@@ -74,8 +68,6 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
         if (token != null && token.startsWith("Bearer ")) {
             token = token.substring(7);
-
-            System.out.println("@token " + token);
 
             return token;
         }

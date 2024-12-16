@@ -36,10 +36,10 @@ public class SecurityConfig {
                         .requestMatchers(AUTH_NOT_REQUIRED).permitAll()
                         .anyRequest().authenticated()
                 )
-//                .exceptionHandling(exception -> exception
-//                        .authenticationEntryPoint(authenticationEntryPoint) // 401 handler
-//                        .accessDeniedHandler(accessDeniedHandler)            // 403 handler
-//                )
+                .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint(authenticationEntryPoint) // 401 handler
+                        .accessDeniedHandler(accessDeniedHandler)            // 403 handler
+                )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 //                .oauth2ResourceServer(spec -> spec.jwt(Customizer.withDefaults()))
                 .addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)

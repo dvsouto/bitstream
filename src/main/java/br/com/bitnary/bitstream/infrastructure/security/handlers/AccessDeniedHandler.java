@@ -21,7 +21,7 @@ public class AccessDeniedHandler implements org.springframework.security.web.acc
         response.setContentType("application/json");
         response.getWriter().write(objectMapper.writeValueAsString(
                 new ApiResponse()
-                        .setMessage("Unauthorized2")
+                        .setMessage("Access Denied")
                         .response()
                         .getEntity()
         ));

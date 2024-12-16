@@ -17,12 +17,11 @@ public class AuthenticationEntryPoint implements org.springframework.security.we
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         ObjectMapper objectMapper = new ObjectMapper();
 
-        System.out.println("@e type" + authException.getClass());
         response.setStatus(401);
         response.setContentType("application/json");
         response.getWriter().write(objectMapper.writeValueAsString(
                 new ApiResponse()
-                        .setMessage("Unauthorized1 - " + authException.getMessage())
+                        .setMessage("Unauthorized")
                         .response()
                         .getEntity()
         ));
