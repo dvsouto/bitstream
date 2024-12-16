@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  java17:
+    build:
+      context: .
+      dockerfile: docker/java17.Dockerfile
+    container_name: bitstream-java17
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./app:/app # Map local folder ./app to /app on container
+    working_dir: /app
