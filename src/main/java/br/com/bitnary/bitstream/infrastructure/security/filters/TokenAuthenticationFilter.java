@@ -1,10 +1,14 @@
 package br.com.bitnary.bitstream.infrastructure.security.filters;
 
+import br.com.bitnary.bitstream.domain.auth.BearerToken;
+import br.com.bitnary.bitstream.domain.user.User;
+import br.com.bitnary.bitstream.domain.user.UserRepository;
 import br.com.bitnary.bitstream.infrastructure.security.exceptions.InvalidTokenException;
 import br.com.bitnary.bitstream.infrastructure.server.SecurityConfig;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,15 +17,14 @@ import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.Collections;
 
 @Component
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
-    private final String SECRET_KEY = "secrectkey";
+    @Autowired
+    UserRepository userRepository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        boolean authorized = false;
         String token = this.getToken(request);
 
         if (shouldSkipAuthentication(request)) {
@@ -29,23 +32,15 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
-        if (token != null) {
-            try {
-                if (token.equals("teste")) {
-                    SecurityContextHolder.getContext().setAuthentication(
-                            new UsernamePasswordAuthenticationToken(
-                                    "davi.souto@gmail.com",
-                                    null,
-                                    Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"))
-                            )
-                    );
-                } else {
-                    throw new InvalidTokenException();
-                }
-            } catch (Exception e) {
-                throw new InvalidTokenException();
-            }
-        }
+        BearerToken bearerToken = BearerToken.builder()
+                .token(token)
+                .build();
+
+        String username = bearerToken.validate();
+        User user = userRepository.findByEmail(username).get();
+
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
         filterChain.doFilter(request, response);
     }

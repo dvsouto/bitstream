@@ -1,57 +1,65 @@
 package br.com.bitnary.bitstream.domain.user;
 
-public class User {
+import br.com.bitnary.bitstream.domain.core.Entity;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.List;
+
+@Getter
+@Setter
+@Builder
+@ToString
+public class User extends Entity implements UserDetails {
+    private String name;
     private String email;
     private String password;
+    private LocalDateTime birthdayDate;
 
-    private String name;
-    private Integer age;
-    private Boolean active;
+    private boolean active;
+    private Collection<? extends GrantedAuthority> roles;
 
-    public User(String email, String password, String name, Integer age, Boolean active) {
-        this.email = email;
-        this.name = name;
-        this.age = age;
-        this.active = active;
+    public void setNewPassword(String password) {
+        String encryptedPassword = new BCryptPasswordEncoder().encode(password);
+
+        this.password = encryptedPassword;
     }
 
-    public String getEmail() {
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
+    }
+
+    @Override
+    public String getUsername() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public String getPassword() {
-        return password;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public boolean isActive() {
+    @Override
+    public boolean isEnabled() {
         return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
     }
 }
