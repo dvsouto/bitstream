@@ -16,7 +16,7 @@ public interface UserMapper {
     @Mapping(target = "user.email", source = "user.email")
     @Mapping(target = "token.access_token", source = "token.token")
     @Mapping(target = "token.token_type", source = "token.type")
-    @Mapping(target = "token.expires_at", source = "token.expires_at")
+    @Mapping(target = "token.expires_at", source = "token.expiresAt")
     AuthenticatedUserResponseDTO toAuthenticatedUserResponse(User user, BearerToken token);
 
     @Mapping(target = "roles", ignore = true)
