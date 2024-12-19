@@ -1,27 +1,29 @@
 package br.com.bitnary.bitstream.domain.core;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@SuperBuilder
+@Getter
+@Setter
+@ToString
 public class Entity {
-    protected String id = null;
-    protected LocalDateTime createdAt = LocalDateTime.now();
-    protected LocalDateTime updatedAt = LocalDateTime.now();
+    protected String id;
+    protected LocalDateTime createdAt;
+    protected LocalDateTime updatedAt;
 
-    public String getId() {
-        return this.id;
-    }
+    public Entity() {
+        LocalDateTime dateNow = LocalDateTime.now();
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = Entity.this.updatedAt;
+        this.id = null;
+        this.createdAt = dateNow;
+        this.updatedAt = dateNow;
     }
 
     public UUID getUuid() {
@@ -30,14 +32,6 @@ public class Entity {
         }
 
         return null;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return this.createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return this.updatedAt;
     }
 
     public void updateTimestamps() {

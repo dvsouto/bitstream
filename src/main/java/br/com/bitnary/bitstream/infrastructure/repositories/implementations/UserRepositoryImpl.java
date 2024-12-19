@@ -53,13 +53,4 @@ public class UserRepositoryImpl implements UserRepository {
 
         return userMapper.toDomain(userEntity);
     }
-
-    @Override
-    public Optional<User> authenticate(String email, String password) {
-        email = email.trim().toLowerCase();
-
-        Optional<UserEntity> userJpa = userRepositoryJPA.findByEmailAndPassword(email, password);
-
-        return userJpa.map(userEntity -> userMapper.toDomain(userEntity));
-    }
 }

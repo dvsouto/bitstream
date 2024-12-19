@@ -1,18 +1,19 @@
 package br.com.bitnary.bitstream.infrastructure.entities;
 
+import br.com.bitnary.bitstream.infrastructure.entities.base.TimestampedEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Getter
 @Setter
 @Table(name = "users")
-public class UserEntity {
+public class UserEntity extends TimestampedEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -34,22 +35,6 @@ public class UserEntity {
     @Column(name = "user_active")
     private boolean active;
 
-    @Column(name = "user_created_at")
-    private LocalDateTime createdAt;
-
-    @Column(name = "user_updated_at")
-    private LocalDateTime updatedAt;
-
-    @PrePersist
-    public void prePersist() {
-        LocalDateTime dateNow = LocalDateTime.now();
-
-        createdAt = dateNow;
-        updatedAt = dateNow;
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        updatedAt = LocalDateTime.now();
-    }
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+    private List<UserProfileEntity> profiles;
 }

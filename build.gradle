@@ -44,6 +44,8 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.mockito:mockito-core'
+	testImplementation 'com.h2database:h2'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
 	runtimeOnly 'org.postgresql:postgresql'
@@ -59,4 +61,8 @@ tasks.withType(JavaCompile) {
 			"-Amapstruct.suppressGeneratorVersionInfoComment=true"
 	]
 	options.annotationProcessorPath = configurations.annotationProcessor
+}
+
+test {
+	systemProperty 'spring.profiles.active', 'test'
 }
