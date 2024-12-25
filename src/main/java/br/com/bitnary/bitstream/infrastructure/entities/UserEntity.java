@@ -35,6 +35,6 @@ public class UserEntity extends TimestampedEntity {
     @Column(name = "user_active")
     private boolean active;
 
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<UserProfileEntity> profiles;
 }

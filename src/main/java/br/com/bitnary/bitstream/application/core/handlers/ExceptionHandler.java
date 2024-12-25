@@ -9,12 +9,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Provider
-public class RuntimeExceptionHandle implements ExceptionMapper<RuntimeException> {
-
-    private static final Logger LOGGER = Logger.getLogger(RuntimeExceptionHandle.class.getName());
+public class ExceptionHandler implements ExceptionMapper<Exception> {
+    private static final Logger LOGGER = Logger.getLogger(Exception.class.getName());
 
     @Override
-    public Response toResponse(RuntimeException exception) {
+    public Response toResponse(Exception exception) {
         LOGGER.log(Level.SEVERE, "Exception caught: ", exception);
 
         String message = exception.getMessage().split("\n")[0];
@@ -25,3 +24,5 @@ public class RuntimeExceptionHandle implements ExceptionMapper<RuntimeException>
                 .response();
     }
 }
+
+

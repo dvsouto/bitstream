@@ -1,6 +1,7 @@
 package br.com.bitnary.bitstream.domain.user;
 
 import br.com.bitnary.bitstream.domain.core.Entity;
+import br.com.bitnary.bitstream.domain.userProfile.UserProfile;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +13,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Getter
@@ -24,6 +27,9 @@ public class User extends Entity implements UserDetails {
     private String email;
     private String password;
     private LocalDateTime birthdayDate;
+
+    @Builder.Default
+    private List<UserProfile> profiles = new ArrayList<>();
 
     private boolean active;
     private Collection<? extends GrantedAuthority> roles;
@@ -62,5 +68,9 @@ public class User extends Entity implements UserDetails {
     @Override
     public boolean isEnabled() {
         return active;
+    }
+
+    public void addProfile(UserProfile userProfile) {
+        this.profiles.add(userProfile);
     }
 }

@@ -15,14 +15,11 @@ public class AuthenticateUserRequestDTO {
     public AuthenticateUserRequestDTO() {
         this.email = null;
         this.password = null;
-
-        System.out.println("e-mail =" + this.email);
     }
 
     public AuthenticateUserRequestDTO(String email, String password) {
         this.email = email != null ? email.toLowerCase() : null;
         this.password = password;
-
     }
 
     public String getEmail() {

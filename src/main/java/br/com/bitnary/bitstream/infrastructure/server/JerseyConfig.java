@@ -2,8 +2,8 @@ package br.com.bitnary.bitstream.infrastructure.server;
 
 import br.com.bitnary.bitstream.application.auth.handlers.AuthenticationFailHandle;
 import br.com.bitnary.bitstream.application.core.handlers.ConstraintViolationHandler;
-import br.com.bitnary.bitstream.application.core.handlers.ExceptionHandle;
-import br.com.bitnary.bitstream.application.core.handlers.RuntimeExceptionHandle;
+import br.com.bitnary.bitstream.application.core.handlers.ExceptionHandler;
+import br.com.bitnary.bitstream.application.core.handlers.RuntimeExceptionHandler;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.validation.ValidationFeature;
 import org.glassfish.jersey.servlet.ServletContainer;
@@ -20,8 +20,8 @@ public class JerseyConfig extends ResourceConfig {
         register(ValidationFeature.class); // Enable validation
 
         // Exceptions handlers
-        register(RuntimeExceptionHandle.class);
-        register(ExceptionHandle.class);
+        register(RuntimeExceptionHandler.class);
+        register(ExceptionHandler.class);
         register(ConstraintViolationHandler.class);
         register(AuthenticationFailHandle.class);
     }

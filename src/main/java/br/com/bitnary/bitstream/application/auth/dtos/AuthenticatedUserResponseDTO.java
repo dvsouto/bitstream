@@ -1,5 +1,7 @@
 package br.com.bitnary.bitstream.application.auth.dtos;
 
+import java.util.List;
+
 public record AuthenticatedUserResponseDTO(
         TokenRecord token,
         UserRecord user
@@ -12,6 +14,11 @@ public record AuthenticatedUserResponseDTO(
 
     public record UserRecord (
             String name,
-            String email
-    ){}
+            String email,
+            List<UserProfileRecord> profiles
+    ){
+        public record UserProfileRecord (
+                String name
+        ) { }
+    }
 }

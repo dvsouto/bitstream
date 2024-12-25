@@ -1,27 +1,30 @@
 package br.com.bitnary.bitstream.infrastructure.security.filters;
 
+import br.com.bitnary.bitstream.application.auth.services.AuthenticationService;
 import br.com.bitnary.bitstream.domain.auth.BearerToken;
 import br.com.bitnary.bitstream.domain.user.User;
 import br.com.bitnary.bitstream.domain.user.UserRepository;
-import br.com.bitnary.bitstream.infrastructure.security.exceptions.InvalidTokenException;
+import br.com.bitnary.bitstream.domain.userProfile.UserProfile;
+import br.com.bitnary.bitstream.domain.userProfile.UserProfileRepository;
 import br.com.bitnary.bitstream.infrastructure.server.SecurityConfig;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.List;
 
 @Component
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
-    UserRepository userRepository;
+    AuthenticationService authenticationService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -37,7 +40,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
                 .build();
 
         String username = bearerToken.validate();
-        User user = userRepository.findByEmail(username).get();
+        User user = authenticationService.findUserByEmail(username);
 
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
