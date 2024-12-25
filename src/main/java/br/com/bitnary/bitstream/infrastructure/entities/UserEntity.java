@@ -37,4 +37,7 @@ public class UserEntity extends TimestampedEntity {
 
     @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<UserProfileEntity> profiles;
+
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<UserMediaEntity> medias;
 }

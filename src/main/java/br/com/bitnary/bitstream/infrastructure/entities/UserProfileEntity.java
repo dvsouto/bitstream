@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -23,4 +24,10 @@ public class UserProfileEntity extends TimestampedEntity {
 
     @Column(name = "user_profile_name")
     private String name;
+
+    @Column(name = "user_profile_default")
+    private boolean defaultProfile;
+
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<UserMediaEntity> medias;
 }

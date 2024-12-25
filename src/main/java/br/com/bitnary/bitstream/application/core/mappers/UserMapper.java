@@ -5,7 +5,7 @@ import br.com.bitnary.bitstream.application.user.dtos.CreateUserRequestDTO;
 import br.com.bitnary.bitstream.application.user.dtos.UserResponseDTO;
 import br.com.bitnary.bitstream.domain.auth.BearerToken;
 import br.com.bitnary.bitstream.domain.user.User;
-import br.com.bitnary.bitstream.domain.userProfile.UserProfile;
+import br.com.bitnary.bitstream.domain.profile.UserProfile;
 import br.com.bitnary.bitstream.infrastructure.entities.UserEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

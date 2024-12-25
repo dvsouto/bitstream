@@ -1,7 +1,7 @@
 package br.com.bitnary.bitstream.application.user.usecases;
 
 import br.com.bitnary.bitstream.domain.user.User;
-import br.com.bitnary.bitstream.infrastructure.repositories.implementations.UserRepositoryImpl;
+import br.com.bitnary.bitstream.domain.user.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import java.util.List;
 @Transactional
 public class FindAllUsersUseCase {
     @Autowired
-    private UserRepositoryImpl userRepository;
+    private UserRepository userRepository;
 
     public void execute() {
         List<User> users = userRepository.findAll();

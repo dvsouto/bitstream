@@ -1,13 +1,11 @@
 package br.com.bitnary.bitstream.infraestructure.repository.implementations;
 
-import br.com.bitnary.bitstream.application.core.mappers.UserMapper;
 import br.com.bitnary.bitstream.application.core.mappers.UserProfileMapper;
 import br.com.bitnary.bitstream.domain.user.User;
-import br.com.bitnary.bitstream.domain.userProfile.UserProfile;
+import br.com.bitnary.bitstream.domain.profile.UserProfile;
 import br.com.bitnary.bitstream.infrastructure.entities.UserEntity;
 import br.com.bitnary.bitstream.infrastructure.entities.UserProfileEntity;
 import br.com.bitnary.bitstream.infrastructure.repositories.implementations.UserProfileRepositoryImpl;
-import br.com.bitnary.bitstream.infrastructure.repositories.implementations.UserRepositoryImpl;
 import br.com.bitnary.bitstream.infrastructure.repositories.jpa.UserProfileRepositoryJPA;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

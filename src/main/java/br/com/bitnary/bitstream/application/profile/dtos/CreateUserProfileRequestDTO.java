@@ -1,4 +1,4 @@
-package br.com.bitnary.bitstream.application.userProfile.dtos;
+package br.com.bitnary.bitstream.application.profile.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;

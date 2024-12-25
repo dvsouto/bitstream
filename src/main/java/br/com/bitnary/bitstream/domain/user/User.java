@@ -1,7 +1,7 @@
 package br.com.bitnary.bitstream.domain.user;
 
 import br.com.bitnary.bitstream.domain.core.Entity;
-import br.com.bitnary.bitstream.domain.userProfile.UserProfile;
+import br.com.bitnary.bitstream.domain.profile.UserProfile;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +15,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @Getter

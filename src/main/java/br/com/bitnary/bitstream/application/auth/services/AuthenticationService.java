@@ -2,8 +2,8 @@ package br.com.bitnary.bitstream.application.auth.services;
 
 import br.com.bitnary.bitstream.domain.user.User;
 import br.com.bitnary.bitstream.domain.user.UserRepository;
-import br.com.bitnary.bitstream.domain.userProfile.UserProfile;
-import br.com.bitnary.bitstream.domain.userProfile.UserProfileRepository;
+import br.com.bitnary.bitstream.domain.profile.UserProfile;
+import br.com.bitnary.bitstream.domain.profile.UserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

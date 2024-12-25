@@ -1,11 +1,9 @@
 package br.com.bitnary.bitstream.application.core.mappers;
 
-import br.com.bitnary.bitstream.application.user.dtos.UserResponseDTO;
-import br.com.bitnary.bitstream.application.userProfile.dtos.CreateUserProfileRequestDTO;
-import br.com.bitnary.bitstream.application.userProfile.dtos.UpdateUserProfileRequestDTO;
-import br.com.bitnary.bitstream.application.userProfile.dtos.UserProfileResponseDTO;
-import br.com.bitnary.bitstream.domain.user.User;
-import br.com.bitnary.bitstream.domain.userProfile.UserProfile;
+import br.com.bitnary.bitstream.application.profile.dtos.CreateUserProfileRequestDTO;
+import br.com.bitnary.bitstream.application.profile.dtos.UpdateUserProfileRequestDTO;
+import br.com.bitnary.bitstream.application.profile.dtos.UserProfileResponseDTO;
+import br.com.bitnary.bitstream.domain.profile.UserProfile;
 import br.com.bitnary.bitstream.infrastructure.entities.UserProfileEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

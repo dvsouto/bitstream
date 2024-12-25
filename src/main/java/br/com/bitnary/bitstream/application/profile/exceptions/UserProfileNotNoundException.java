@@ -1,4 +1,4 @@
-package br.com.bitnary.bitstream.application.userProfile.exceptions;
+package br.com.bitnary.bitstream.application.profile.exceptions;
 
 import br.com.bitnary.bitstream.application.core.exceptions.ApiException;
 import jakarta.ws.rs.core.Response;

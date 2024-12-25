@@ -1,8 +1,8 @@
-package br.com.bitnary.bitstream.domain.userProfile;
+package br.com.bitnary.bitstream.domain.media;
 
 import br.com.bitnary.bitstream.domain.core.Entity;
+import br.com.bitnary.bitstream.domain.profile.UserProfile;
 import br.com.bitnary.bitstream.domain.user.User;
-import br.com.bitnary.bitstream.shared.StringUtils;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,11 +12,11 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @SuperBuilder(toBuilder = true)
 @ToString
-public class UserProfile extends Entity {
+public class Media extends Entity {
     private String name;
-    private User user;
+    private MediaType type;
+    private String path;
 
-    public void setName(String name) {
-        this.name = StringUtils.capitalizeFirst(name);
-    }
+    private User user;
+    private UserProfile userProfile;
 }

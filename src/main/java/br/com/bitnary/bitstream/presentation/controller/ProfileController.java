@@ -1,16 +1,12 @@
 package br.com.bitnary.bitstream.presentation.controller;
 
-import br.com.bitnary.bitstream.application.core.mappers.UserMapper;
 import br.com.bitnary.bitstream.application.core.mappers.UserProfileMapper;
-import br.com.bitnary.bitstream.application.user.dtos.CreateUserRequestDTO;
-import br.com.bitnary.bitstream.application.user.usecases.CreateUserUseCase;
-import br.com.bitnary.bitstream.application.userProfile.dtos.CreateUserProfileRequestDTO;
-import br.com.bitnary.bitstream.application.userProfile.dtos.UpdateUserProfileRequestDTO;
-import br.com.bitnary.bitstream.application.userProfile.usecases.CreateUserProfileUseCase;
-import br.com.bitnary.bitstream.application.userProfile.usecases.FindUserProfileByIdUseCase;
-import br.com.bitnary.bitstream.application.userProfile.usecases.UpdateUserProfileUseCase;
-import br.com.bitnary.bitstream.domain.user.User;
-import br.com.bitnary.bitstream.domain.userProfile.UserProfile;
+import br.com.bitnary.bitstream.application.profile.dtos.CreateUserProfileRequestDTO;
+import br.com.bitnary.bitstream.application.profile.dtos.UpdateUserProfileRequestDTO;
+import br.com.bitnary.bitstream.application.profile.usecases.CreateUserProfileUseCase;
+import br.com.bitnary.bitstream.application.profile.usecases.FindUserProfileByIdUseCase;
+import br.com.bitnary.bitstream.application.profile.usecases.UpdateUserProfileUseCase;
+import br.com.bitnary.bitstream.domain.profile.UserProfile;
 import br.com.bitnary.bitstream.presentation.response.ApiResponse;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
